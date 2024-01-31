@@ -1,8 +1,11 @@
 <h1>Projeto-Linux</h1>
 
 <h3>Objetivos:</h3>
+
 - Provisionar uma instância EC2 na AWS
+
 - Configurar o NFS na instância EC2
+  
 - Usar o NFS para armazenar dados
 
 <h3>A atividade consistirá nas seguintes etapas:</h3>
