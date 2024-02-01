@@ -1,4 +1,4 @@
-<h1>Projeto-Linux</h1>
+<h1>Projeto-AWS-Linux</h1>
 
 <h3>Objetivos:</h3>
 
