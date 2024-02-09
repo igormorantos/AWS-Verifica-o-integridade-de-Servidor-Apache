@@ -13,7 +13,7 @@ else
 fi
 
 # Gerar mensagem
-MENSAGEM="O serviço $SERVICO está $STATUS"
+MENSAGEM="O $SERVICO está $STATUS"
 
 # Registrar mensagem no arquivo de log
 echo "$DATA $HORA - $SERVICO - $STATUS - $MENSAGEM" >> /mnt/nfs/igor/statusServer.txt
