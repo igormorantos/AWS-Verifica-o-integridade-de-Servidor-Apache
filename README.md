@@ -142,10 +142,6 @@ validação para o seu diretorio no nfs;
 
 ### Configurar a execução do script de validação a cada 5 minutos.
 
-#### Escolha uma das formas a seguir:
-<details>
-<summary>Usando o crontab (mais simples)</summary>
-
 ### Configurar o cronjob.
 
 - Execute o comando `crontab -e` para editar o cronjob.
