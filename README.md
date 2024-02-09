@@ -71,3 +71,89 @@ validação para o seu diretorio no nfs;
 
 
 <h2>Passo a Passo da Atividade: </h2>
+
+### Gerar uma chave pública de acesso na AWS e anexá-la à uma nova instância EC2.
+- Feita Durante a criação da instancia na hora de seleciona-la voce pode criar uma nova chave e ja vincular com o EC2
+
+
+### Alocar um endereço IP elástico à instância EC2.
+
+- Acessar a AWS na pagina do serviço EC2, e clicar em "IPs elásticos" no menu lateral esquerdo.
+- Clicar em "Alocar endereço IP elástico".
+- Selecionar o ip alocado e clicar em "Ações" > "Associar endereço IP elástico".
+- Selecionar a instância EC2 criada anteriormente e clicar em "Associar".
+
+### Configurar regras de segurança.
+- Ao criar a instancia voce pode criar as regras de segurança e os grupos juntamente com a instancia nas opções que ela oferece
+- Selecionar o grupo de segurança da instância EC2 que esta sendo criada.
+- Configurar as seguintes regras:
+    Tipo | Protocolo | Intervalo de portas | Origem | Descrição
+    ---|---|---|---|---
+    SSH | TCP | 22 | 0.0.0.0/0 | SSH
+    TCP personalizado | TCP | 80 | 0.0.0.0/0 | HTTP
+    TCP personalizado | TCP | 443 | 0.0.0.0/0 | HTTPS
+    TCP personalizado | TCP | 111 | 0.0.0.0/0 | RPC
+    UDP personalizado | UDP | 111 | 0.0.0.0/0 | RPC
+    TCP personalizado | TCP | 2049 | 0.0.0.0/0 | NFS
+    UDP personalizado | UDP | 2049 | 0.0.0.0/0 | NFS
+
+### Configurar o NFS com o IP fornecido
+
+- Criar um novo diretório para o NFS usando o comando `sudo mkdir /mnt/nfs`.
+- Montar o NFS no diretório criado usando o comando `sudo mount IP_OU_DNS_DO_NFS:/ /mnt/nfs`.
+- Verificar se foi montado com o comando `df -h`.
+- Criar um novo diretório para o usuário `sudo mkdir /mnt/nfs/nomeDaSuaPasta`.
+
+### Configurar o Apache.
+
+- para atualizar o sistema: `sudo yum update -y`
+- instalar o apache `sudo yum install httpd -y`
+- iniciar o apache `sudo systemctl start httpd`
+- habilitar o apache para iniciar automaticamente `sudo systemctl enable httpd`
+- verificar o status do apache. `sudo systemctl status httpd`
+
+### Configurar o script de validação.
+
+- Crie um novo arquivo de script usando o comando "vim script.sh" e insira o seguinte codigo:
+    ```bash
+    #!/bin/bash
+
+    # Definir variáveis
+    DATA=$(date +%d/%m/%Y)
+    HORA=$(date +%H:%M:%S)
+    SERVICO="httpd"
+
+    # Verificar se o serviço está em execução
+    if systemctl is-active "$SERVICO" > /dev/null; then
+    STATUS="active"
+    else
+    STATUS="inactive"
+    fi
+
+    # Gerar mensagem
+    MENSAGEM="O serviço $SERVICO está $STATUS"
+
+    # Registrar mensagem no arquivo de log
+    echo "$DATA $HORA - $SERVICO - $STATUS - $MENSAGEM" >> /mnt/nfs/igor/statusServer.txt
+    ```
+    
+- Execute o comando `chmod +x script.sh` para tornar o arquivo de script executável.
+- Execute o comando `./script.sh` para executar o script.
+
+### Configurar a execução do script de validação a cada 5 minutos.
+
+#### Escolha uma das formas a seguir:
+<details>
+<summary>Usando o crontab (mais simples)</summary>
+
+### Configurar o cronjob.
+
+- Execute o comando `crontab -e` para editar o cronjob.
+- Adicione a seguinte linha de código no arquivo de cronjob:
+    ```bash
+    */5 * * * * /caminho-para-seu-arquivo
+    ```
+    
+- Após salvar Execute o comando `crontab -l` para verificar se foi escrito e salvo.
+
+</details>
