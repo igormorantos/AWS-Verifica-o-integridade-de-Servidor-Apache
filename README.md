@@ -87,15 +87,15 @@ validação para o seu diretorio no nfs;
 - Ao criar a instancia voce pode criar as regras de segurança e os grupos juntamente com a instancia nas opções que ela oferece
 - Selecionar o grupo de segurança da instância EC2 que esta sendo criada.
 - Configurar as seguintes regras:
-    Tipo | Protocolo | Intervalo de portas | Origem | Descrição
+    Tipo | Protocolo | Intervalo de portas | Origem |
     ---|---|---|---|---
     SSH | TCP | 22 | 0.0.0.0/0 | SSH
-    TCP personalizado | TCP | 80 | 0.0.0.0/0 | HTTP
-    TCP personalizado | TCP | 443 | 0.0.0.0/0 | HTTPS
-    TCP personalizado | TCP | 111 | 0.0.0.0/0 | RPC
-    UDP personalizado | UDP | 111 | 0.0.0.0/0 | RPC
-    TCP personalizado | TCP | 2049 | 0.0.0.0/0 | NFS
-    UDP personalizado | UDP | 2049 | 0.0.0.0/0 | NFS
+    TCP personalizado | TCP | 80 | 0.0.0.0/0 |
+    TCP personalizado | TCP | 443 | 0.0.0.0/0 |
+    TCP personalizado | TCP | 111 | 0.0.0.0/0 |
+    UDP personalizado | UDP | 111 | 0.0.0.0/0 |
+    TCP personalizado | TCP | 2049 | 0.0.0.0/0 |
+    UDP personalizado | UDP | 2049 | 0.0.0.0/0 |
 
 ### Configurar o NFS com o IP fornecido
 
