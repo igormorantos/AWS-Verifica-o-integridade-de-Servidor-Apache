@@ -88,8 +88,8 @@ validação para o seu diretorio no nfs;
 - Selecionar o grupo de segurança da instância EC2 que esta sendo criada.
 - Configurar as seguintes regras:
     Tipo | Protocolo | Intervalo de portas | Origem |
-    ---|---|---|---|---
-    SSH | TCP | 22 | 0.0.0.0/0 | SSH
+    ---|---|---|---|
+    SSH | TCP | 22 | 0.0.0.0/0 |
     TCP personalizado | TCP | 80 | 0.0.0.0/0 |
     TCP personalizado | TCP | 443 | 0.0.0.0/0 |
     TCP personalizado | TCP | 111 | 0.0.0.0/0 |
