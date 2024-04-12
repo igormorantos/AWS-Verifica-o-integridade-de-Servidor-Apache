@@ -97,10 +97,18 @@ validação para o seu diretorio no nfs;
     TCP personalizado | TCP | 2049 | 0.0.0.0/0 |
     UDP personalizado | UDP | 2049 | 0.0.0.0/0 |
 
+### Criar Um EFS
+
+Criando o Elastic File System:
+
+ - Ir ao Criar sistema de arquivo
+ - Criar nome do EFS
+ - Escolher a vpc
+
 ### Configurar o NFS com o IP fornecido
 
 - Criar um novo diretório para o NFS usando o comando `sudo mkdir /mnt/nfs`.
-- Montar o NFS no diretório criado usando o comando `sudo mount IP_OU_DNS_DO_NFS:/ /mnt/nfs`.
+- Montar o NFS no diretório criado usando o comando `sudo mount IP_OU_DNS_DO_EFS:/ /mnt/nfs`.
 - Verificar se foi montado com o comando `df -h`.
 - Criar um novo diretório para o usuário `sudo mkdir /mnt/nfs/nomeDaSuaPasta`.
 
